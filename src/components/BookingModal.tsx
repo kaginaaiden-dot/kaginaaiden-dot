@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { TravelPackage, Flight, Hotel, BookingRecord } from '../types';
-import { X, Calendar, Users, ShieldCheck, CheckCircle2, Plane, Hotel as HotelIcon, Compass, Sparkles, ArrowRight, Phone } from 'lucide-react';
+import { TravelPackage, Flight, Hotel, CarRental, BookingRecord } from '../types';
+import { X, Calendar, Users, ShieldCheck, CheckCircle2, Plane, Hotel as HotelIcon, Compass, Sparkles, ArrowRight, Phone, Car } from 'lucide-react';
 
 interface BookingModalProps {
-  item: TravelPackage | Flight | Hotel | null;
-  itemType: 'package' | 'flight' | 'hotel' | null;
+  item: TravelPackage | Flight | Hotel | CarRental | null;
+  itemType: 'package' | 'flight' | 'hotel' | 'car' | null;
   currency: string;
   onClose: () => void;
   onConfirmBooking: (booking: BookingRecord) => void;
@@ -20,9 +20,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   if (!item || !itemType) return null;
 
   const [step, setStep] = useState<'details' | 'passenger' | 'confirmed'>('details');
-  const [leadName, setLeadName] = useState('');
-  const [leadEmail, setLeadEmail] = useState('');
-  const [leadPhone, setLeadPhone] = useState('');
+  const [leadName, setLeadName] = useState('Aiden Kagina');
+  const [leadEmail, setLeadEmail] = useState('kaginaaiden@gmail.com');
+  const [leadPhone, setLeadPhone] = useState('0784467000');
   const [passengers, setPassengers] = useState(2);
   const [startDate, setStartDate] = useState('2026-09-15');
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>(['VIP Airport Transfer']);
@@ -41,6 +41,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     if (itemType === 'package') return (item as TravelPackage).pricePerPerson * passengers;
     if (itemType === 'flight') return (item as Flight).price * passengers;
     if (itemType === 'hotel') return (item as Hotel).pricePerNight * 3; // 3 nights default
+    if (itemType === 'car') return (item as CarRental).pricePerDayUSD * 7; // 7 days rental default
     return 1000;
   };
 
@@ -80,6 +81,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       const h = item as Hotel;
       title = h.name;
       dest = `${h.city}, ${h.country}`;
+    } else if (itemType === 'car') {
+      const c = item as CarRental;
+      title = `4x4 Hire: ${c.name} (${c.driveType})`;
+      dest = 'Uganda & East Africa';
     }
 
     const newBooking: BookingRecord = {
@@ -125,6 +130,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 {itemType === 'package' && (item as TravelPackage).title}
                 {itemType === 'flight' && `${(item as Flight).airline} ${(item as Flight).flightNumber}`}
                 {itemType === 'hotel' && (item as Hotel).name}
+                {itemType === 'car' && (item as CarRental).name}
               </h3>
             </div>
 
@@ -146,6 +152,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 <div>
                   <p className="text-gray-700">{(item as Hotel).description}</p>
                   <p className="text-emerald-800 font-bold mt-1">Amenities: {(item as Hotel).amenities.join(', ')}</p>
+                </div>
+              )}
+              {itemType === 'car' && (
+                <div>
+                  <p className="text-gray-800 font-bold">Category: {(item as CarRental).type} ({(item as CarRental).driveType})</p>
+                  <p className="text-gray-600 mt-0.5">Popular For: {(item as CarRental).popularFor}</p>
+                  <p className="text-emerald-800 font-bold mt-1">Features: {(item as CarRental).features.join(', ')}</p>
                 </div>
               )}
             </div>
@@ -248,7 +261,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 <input
                   type="email"
                   required
-                  placeholder="eleanor@example.com"
+                  placeholder="kaginaaiden@gmail.com"
                   value={leadEmail}
                   onChange={(e) => setLeadEmail(e.target.value)}
                   className="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl font-medium"
@@ -256,11 +269,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               </div>
 
               <div>
-                <label className="font-bold text-gray-700 block mb-1">Phone Number (Flight Alerts)</label>
+                <label className="font-bold text-gray-700 block mb-1">Phone Number (MTN / Airtel Flight Alerts)</label>
                 <input
                   type="tel"
                   required
-                  placeholder="+1 (555) 019-2834"
+                  placeholder="0784467000 (MTN) or 0752023628 (Airtel)"
                   value={leadPhone}
                   onChange={(e) => setLeadPhone(e.target.value)}
                   className="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl font-medium"

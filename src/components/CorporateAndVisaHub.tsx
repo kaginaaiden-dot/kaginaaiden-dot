@@ -3,29 +3,33 @@ import { FileCheck, ShieldCheck, Briefcase, Globe, Building2, CheckCircle2, Aler
 
 export const CorporateAndVisaHub: React.FC = () => {
   const [passportCountry, setPassportCountry] = useState('US');
-  const [destinationCountry, setDestinationCountry] = useState('Japan');
+  const [destinationCountry, setDestinationCountry] = useState('Uganda');
   const [corporateSubmitted, setCorporateSubmitted] = useState(false);
 
-  // Visa rules database simulation
+  // Visa rules database simulation focused on East Africa
   const VISA_RULES: Record<string, Record<string, { type: string; stay: string; fee: string; processing: string; requirements: string[] }>> = {
     US: {
-      Japan: { type: 'Visa-Free', stay: '90 Days', fee: 'Free', processing: 'Instant', requirements: ['Passport valid for duration of stay', 'Onward or return flight ticket', 'Visit Japan Web QR Code'] },
-      'Schengen Area': { type: 'ETIAS / Visa-Free', stay: '90 Days within 180 Days', fee: '€7 ETIAS', processing: '24-48 Hours', requirements: ['Passport valid for 3+ months beyond stay', 'ETIAS Authorization', 'Proof of funds & travel insurance'] },
-      Tanzania: { type: 'eVisa or Visa on Arrival', stay: '90 Days', fee: '$100 USD', processing: 'Instant / 3 Days Online', requirements: ['Yellow Fever Certificate if arriving from endemic zone', 'eVisa approval or $100 cash', 'Return ticket'] },
-      UAE: { type: 'Visa on Arrival', stay: '30 Days', fee: 'Free', processing: 'At Airport Ingress', requirements: ['Passport valid for 6+ months', 'Hotel booking confirmation'] },
-      Indonesia: { type: 'e-VOA (Visa on Arrival)', stay: '30 Days', fee: '$35 USD', processing: 'Instant / Online', requirements: ['Passport valid for 6 months', 'SATUSEHAT health app', 'Return ticket'] },
+      Uganda: { type: 'eVisa (visas.immigration.go.ug)', stay: '90 Days', fee: '$50 USD', processing: '24-48 Hours Online', requirements: ['Yellow Fever Vaccination Card (Mandatory)', 'Passport valid for 6+ months', 'Passport photo & return ticket'] },
+      'East Africa Tourist Visa (EATV)': { type: 'Joint Multi-Country Permit (UG, KE, RW)', stay: '90 Days Multi-Entry', fee: '$100 USD', processing: '2-3 Days Online', requirements: ['Passport valid for 6+ months', 'Yellow Fever Certificate', 'Travel itinerary across UG, KE, RW'] },
+      Kenya: { type: 'eTA (etakenya.go.ke)', stay: '90 Days', fee: '$34 USD', processing: '24-72 Hours', requirements: ['Passport valid 6+ months', 'Hotel booking confirmation', 'Return flight ticket'] },
+      Tanzania: { type: 'eVisa or Visa on Arrival', stay: '90 Days', fee: '$100 USD (US Citizens)', processing: 'Instant / 3 Days Online', requirements: ['Yellow Fever Certificate if arriving from endemic zone', 'Passport valid 6+ months', 'Return ticket'] },
+      Rwanda: { type: 'eVisa or Visa on Arrival', stay: '30 Days', fee: '$50 USD', processing: 'Instant at border or 2 Days Online', requirements: ['Passport valid 6+ months', 'Yellow Fever Certificate'] },
+      Burundi: { type: 'Visa on Arrival at Bujumbura Airport', stay: '30 Days', fee: '$90 USD', processing: 'At Bujumbura (BJM) Airport', requirements: ['Yellow Fever Vaccination Card', 'Hotel reservation', 'Passport valid 6+ months'] },
+      'South Sudan': { type: 'e-Visa (evisa.gov.ss)', stay: '30 Days', fee: '$100 USD', processing: '3-5 Days Online', requirements: ['Yellow Fever Card', 'Passport valid 6+ months', 'Invitation letter or hotel voucher'] },
     },
     UK: {
-      Japan: { type: 'Visa-Free', stay: '90 Days', fee: 'Free', processing: 'Instant', requirements: ['Passport valid for duration of stay', 'Return ticket'] },
+      Uganda: { type: 'eVisa', stay: '90 Days', fee: '$50 USD', processing: '24-48 Hours', requirements: ['Yellow Fever Vaccination Card', 'Passport valid 6+ months', 'Return ticket'] },
+      'East Africa Tourist Visa (EATV)': { type: 'Joint Permit (UG, KE, RW)', stay: '90 Days', fee: '$100 USD', processing: '2-3 Days', requirements: ['Yellow Fever Certificate', 'Passport valid 6+ months', 'Multi-country itinerary'] },
+      Kenya: { type: 'eTA (etakenya.go.ke)', stay: '90 Days', fee: '$34 USD', processing: '24-72 Hours', requirements: ['Passport valid 6+ months', 'Return ticket'] },
       Tanzania: { type: 'eVisa', stay: '90 Days', fee: '$50 USD', processing: '2-3 Business Days', requirements: ['Passport valid 6+ months', 'Proof of accommodation'] },
-      USA: { type: 'ESTA Authorization', stay: '90 Days', fee: '$21 USD', processing: '72 Hours', requirements: ['Valid e-Passport', 'ESTA Application approved prior to flight'] },
-      UAE: { type: 'Visa on Arrival', stay: '30 Days', fee: 'Free', processing: 'Instant at border', requirements: ['Passport valid 6+ months'] },
+      Rwanda: { type: 'Visa on Arrival / eVisa', stay: '30 Days', fee: '$50 USD', processing: 'Instant at Kigali Airport', requirements: ['Passport valid 6+ months', 'Yellow Fever Certificate'] },
     },
-    India: {
-      Japan: { type: 'e-Visa Required', stay: '90 Days', fee: '$25 USD', processing: '3-5 Business Days', requirements: ['Passport valid 6 months', 'Bank statement last 6 months', 'Hotel booking & flight itinerary'] },
-      Tanzania: { type: 'eVisa Required', stay: '90 Days', fee: '$50 USD', processing: '3-5 Days', requirements: ['Passport copy', 'Flight itinerary', 'Hotel confirmation'] },
-      UAE: { type: 'eVisa / VOA if US Visa held', stay: '14 to 30 Days', fee: '$60 USD', processing: '24-48 Hours', requirements: ['Passport copy', 'Photo', 'Return flight'] },
-      'Schengen Area': { type: 'Schengen Embassy Visa', stay: '90 Days', fee: '€90', processing: '15 Business Days', requirements: ['Complete Schengen Form', 'Flight & Hotel Bookings', 'Income Tax Returns (3 Yrs)', 'Travel Insurance €30,000'] },
+    EU: {
+      Uganda: { type: 'eVisa', stay: '90 Days', fee: '$50 USD', processing: '24-48 Hours', requirements: ['Yellow Fever Vaccination Card', 'Passport valid 6+ months'] },
+      'East Africa Tourist Visa (EATV)': { type: 'Joint Permit (UG, KE, RW)', stay: '90 Days', fee: '$100 USD', processing: '2-3 Days', requirements: ['Yellow Fever Certificate', 'Passport valid 6+ months'] },
+      Kenya: { type: 'eTA Authorization', stay: '90 Days', fee: '$34 USD', processing: '24-72 Hours', requirements: ['Passport valid 6+ months'] },
+      Tanzania: { type: 'eVisa', stay: '90 Days', fee: '$50 USD', processing: '2-3 Days', requirements: ['Passport valid 6+ months'] },
+      Rwanda: { type: 'Visa-Free / VOA', stay: '30 Days', fee: '$50 USD', processing: 'At Kigali Airport', requirements: ['Passport valid 6+ months'] },
     },
   };
 
@@ -79,22 +83,24 @@ export const CorporateAndVisaHub: React.FC = () => {
             >
               <option value="US">🇺🇸 United States</option>
               <option value="UK">🇬🇧 United Kingdom</option>
-              <option value="India">🇮🇳 India</option>
+              <option value="EU">🇪🇺 European Union</option>
             </select>
           </div>
 
           <div className="bg-gray-50 p-4 rounded-2xl border border-gray-200">
-            <label className="text-xs font-bold text-gray-700 block mb-1">Destination Country</label>
+            <label className="text-xs font-bold text-gray-700 block mb-1">East Africa Destination</label>
             <select
               value={destinationCountry}
               onChange={(e) => setDestinationCountry(e.target.value)}
               className="w-full bg-white p-2.5 border border-gray-300 rounded-xl text-xs font-bold text-gray-900 focus:outline-hidden"
             >
-              <option value="Japan">🇯🇵 Japan</option>
-              <option value="Schengen Area">🇪🇺 Schengen Area (Europe)</option>
-              <option value="Tanzania">🇹🇿 Tanzania</option>
-              <option value="UAE">🇦🇪 United Arab Emirates</option>
-              <option value="Indonesia">🇮🇩 Indonesia (Bali)</option>
+              <option value="Uganda">🇺🇬 Uganda (Pearl of Africa)</option>
+              <option value="East Africa Tourist Visa (EATV)">🌍 East Africa Joint Visa (UG, KE, RW)</option>
+              <option value="Kenya">🇰🇪 Kenya</option>
+              <option value="Tanzania">🇹🇿 Tanzania & Zanzibar</option>
+              <option value="Rwanda">🇷🇼 Rwanda</option>
+              <option value="Burundi">🇧🇮 Burundi</option>
+              <option value="South Sudan">🇸🇸 South Sudan</option>
             </select>
           </div>
         </div>
@@ -138,10 +144,10 @@ export const CorporateAndVisaHub: React.FC = () => {
               Aiden Travel Solutions offers end-to-end visa application assistance.
             </span>
             <a
-              href="tel:18005552433"
-              className="bg-[#0D3B2B] hover:bg-[#08291e] text-white px-4 py-2 rounded-xl font-bold flex items-center gap-2 shadow-xs transition-all"
+              href="tel:+256784467000"
+              className="bg-[#0D3B2B] hover:bg-[#08291e] text-white px-4 py-2 rounded-xl font-bold flex items-center gap-2 shadow-xs transition-all text-xs"
             >
-              <PhoneCall className="w-3.5 h-3.5 text-[#E88B23]" /> Call Visa Specialist
+              <PhoneCall className="w-3.5 h-3.5 text-[#E88B23]" /> Call: 0784467000 / 0752023628
             </a>
           </div>
         </div>

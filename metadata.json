@@ -1,6 +1,6 @@
 {
   "name": "Aiden Travel Solutions",
-  "description": "Comprehensive travel management platform with AI trip planning, flight & hotel booking, curated packages, and corporate travel solutions.",
+  "description": "Premier East Africa travel management platform with 4x4 Uganda car rentals, gorilla trekking, Serengeti safaris, flight & hotel booking, and AI itinerary design.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

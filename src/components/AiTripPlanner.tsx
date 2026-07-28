@@ -11,12 +11,12 @@ export const AiTripPlanner: React.FC<AiTripPlannerProps> = ({
   onSaveBooking,
   onOpenConciergeWithPrompt,
 }) => {
-  const [destination, setDestination] = useState('Kyoto, Japan');
+  const [destination, setDestination] = useState('Bwindi & Kibale, Uganda');
   const [durationDays, setDurationDays] = useState(7);
-  const [budgetLevel, setBudgetLevel] = useState('Luxury');
-  const [travelStyle, setTravelStyle] = useState('Culture & Gastronomy');
+  const [budgetLevel, setBudgetLevel] = useState('Luxury (Boutique & Premium)');
+  const [travelStyle, setTravelStyle] = useState('Gorilla Trekking & Primate Safari');
   const [guests, setGuests] = useState(2);
-  const [specialRequests, setSpecialRequests] = useState('Interested in traditional tea ceremony and private ryokan onsen.');
+  const [specialRequests, setSpecialRequests] = useState('Interested in gorilla habituation, luxury eco-lodges, and a private 4x4 Land Cruiser with driver guide.');
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -116,13 +116,13 @@ export const AiTripPlanner: React.FC<AiTripPlannerProps> = ({
           <form onSubmit={handleGenerateItinerary} className="space-y-4 text-xs">
             {/* Destination */}
             <div>
-              <label className="font-bold text-gray-700 block mb-1">Destination City or Country</label>
+              <label className="font-bold text-gray-700 block mb-1">East Africa Destination</label>
               <div className="relative">
                 <MapPin className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Kyoto, Iceland, Serengeti, Paris"
+                  placeholder="e.g. Bwindi, Serengeti, Masai Mara, Zanzibar"
                   value={destination}
                   onChange={(e) => setDestination(e.target.value)}
                   className="w-full pl-9 pr-3 py-2.5 bg-gray-50 border border-gray-300 rounded-xl font-semibold text-gray-900 focus:outline-hidden focus:border-[#0D3B2B]"
@@ -157,8 +157,8 @@ export const AiTripPlanner: React.FC<AiTripPlannerProps> = ({
                 onChange={(e) => setBudgetLevel(e.target.value)}
                 className="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl font-semibold text-gray-900 focus:outline-hidden focus:border-[#0D3B2B]"
               >
-                <option value="Ultra Luxury (5-Star & Private Charters)">Ultra Luxury (5-Star & Private Charters)</option>
-                <option value="Luxury (Boutique & Premium)">Luxury (Boutique & Premium)</option>
+                <option value="Ultra Luxury (5-Star Lodges & Air Charters)">Ultra Luxury (5-Star Lodges & Air Charters)</option>
+                <option value="Luxury (Boutique & Premium Safari Camps)">Luxury (Boutique & Premium Safari Camps)</option>
                 <option value="Balanced Comfort (4-Star Stays)">Balanced Comfort (4-Star Stays)</option>
                 <option value="Explorer Smart Budget">Explorer Smart Budget</option>
               </select>
@@ -172,12 +172,11 @@ export const AiTripPlanner: React.FC<AiTripPlannerProps> = ({
                 onChange={(e) => setTravelStyle(e.target.value)}
                 className="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl font-semibold text-gray-900 focus:outline-hidden focus:border-[#0D3B2B]"
               >
-                <option value="Culture & Gastronomy">Culture & Gastronomy</option>
-                <option value="Wildlife Safari & Nature">Wildlife Safari & Nature</option>
-                <option value="Romantic & Honeymoon">Romantic & Honeymoon</option>
-                <option value="Family Friendly Adventure">Family Friendly Adventure</option>
-                <option value="Wellness & Spa Sanctuary">Wellness & Spa Sanctuary</option>
-                <option value="Alpine Ski & Hiking">Alpine Ski & Hiking</option>
+                <option value="Gorilla Trekking & Primate Safari">Gorilla Trekking & Primate Safari</option>
+                <option value="Great Migration & Big Five Safari">Great Migration & Big Five Safari</option>
+                <option value="Mount Kilimanjaro Climbing Expedition">Mount Kilimanjaro Climbing Expedition</option>
+                <option value="Zanzibar Spice & Beach Escapes">Zanzibar Spice & Beach Escapes</option>
+                <option value="Cultural Heritage & Nile River Adventure">Cultural Heritage & Nile River Adventure</option>
               </select>
             </div>
 

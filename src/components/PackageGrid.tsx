@@ -23,8 +23,8 @@ export const PackageGrid: React.FC<PackageGridProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const regions = ['All', 'Africa', 'Asia', 'Europe', 'Middle East'];
-  const categories = ['All', 'Wildlife & Beach', 'Culture & Relaxation', 'Luxury Escapes', 'Mountain & Adventure', 'Wellness & Beach'];
+  const regions = ['All', 'Uganda', 'Kenya', 'Tanzania', 'Rwanda', 'Burundi', 'South Sudan'];
+  const categories = ['All', 'Gorilla & Primate Trekking', 'Savanna Game Drives', 'Kilimanjaro Expeditions', 'Zanzibar & Coast Escapes', 'Cultural & Nile Adventures'];
 
   const currencySymbols: Record<string, string> = {
     USD: '$',
@@ -69,10 +69,10 @@ export const PackageGrid: React.FC<PackageGridProps> = ({
             Aiden Handcrafted Collection
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 font-serif">
-            Curated World Packages
+            Curated East Africa Expeditions
           </h2>
           <p className="text-gray-600 text-sm mt-1 max-w-xl">
-            Fully customizable, end-to-end luxury travel solutions with private guides, premium stays, and seamless logistics.
+            Bespoke gorilla trekking, Serengeti migration safaris, Kilimanjaro climbs, and Zanzibar beach escapes managed by local East Africa travel experts.
           </p>
         </div>
 

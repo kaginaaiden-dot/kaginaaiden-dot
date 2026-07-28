@@ -5,11 +5,12 @@ import { PackageGrid } from './components/PackageGrid';
 import { AiTripPlanner } from './components/AiTripPlanner';
 import { FlightHotelSearch } from './components/FlightHotelSearch';
 import { CorporateAndVisaHub } from './components/CorporateAndVisaHub';
+import { CarRentalService } from './components/CarRentalService';
 import { MyBookingsView } from './components/MyBookingsView';
 import { BookingModal } from './components/BookingModal';
 import { AiConciergeDrawer } from './components/AiConciergeDrawer';
 import { Footer } from './components/Footer';
-import { NavigationTab, TravelPackage, Flight, Hotel, BookingRecord } from './types';
+import { NavigationTab, TravelPackage, Flight, Hotel, CarRental, BookingRecord } from './types';
 import { Sparkles, Compass, ShieldCheck, Award, Heart, CheckCircle2 } from 'lucide-react';
 
 export default function App() {
@@ -39,8 +40,8 @@ export default function App() {
   ]);
 
   // Modal & Drawer State
-  const [bookingModalItem, setBookingModalItem] = useState<TravelPackage | Flight | Hotel | null>(null);
-  const [bookingModalType, setBookingModalType] = useState<'package' | 'flight' | 'hotel' | null>(null);
+  const [bookingModalItem, setBookingModalItem] = useState<TravelPackage | Flight | Hotel | CarRental | null>(null);
+  const [bookingModalType, setBookingModalType] = useState<'package' | 'flight' | 'hotel' | 'car' | null>(null);
   const [conciergeOpen, setConciergeOpen] = useState(false);
   const [conciergePrompt, setConciergePrompt] = useState<string | undefined>(undefined);
 
@@ -56,7 +57,7 @@ export default function App() {
       .catch((err) => console.error('Failed to load packages:', err));
   }, []);
 
-  const handleOpenBookingModal = (item: TravelPackage | Flight | Hotel, type: 'package' | 'flight' | 'hotel') => {
+  const handleOpenBookingModal = (item: TravelPackage | Flight | Hotel | CarRental, type: 'package' | 'flight' | 'hotel' | 'car') => {
     setBookingModalItem(item);
     setBookingModalType(type);
   };
@@ -197,6 +198,13 @@ export default function App() {
         )}
 
         {activeTab === 'corporate' && <CorporateAndVisaHub />}
+
+        {activeTab === 'car-rental' && (
+          <CarRentalService
+            currency={currency}
+            onBookCar={(car) => handleOpenBookingModal(car, 'car')}
+          />
+        )}
 
         {activeTab === 'my-bookings' && (
           <MyBookingsView

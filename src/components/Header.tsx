@@ -1,7 +1,7 @@
 import React from 'react';
 import { Logo } from './Logo';
 import { NavigationTab } from '../types';
-import { Sparkles, Phone, Compass, Plane, Hotel, Globe, Briefcase, BookmarkCheck, ChevronDown, ShieldCheck } from 'lucide-react';
+import { Sparkles, Phone, Compass, Plane, Hotel, Globe, Briefcase, BookmarkCheck, ChevronDown, ShieldCheck, Car } from 'lucide-react';
 
 interface HeaderProps {
   activeTab: NavigationTab;
@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 font-medium text-emerald-200">
               <Phone className="w-3.5 h-3.5 text-[#E88B23]" />
-              24/7 VIP Concierge: <a href="tel:18005552433" className="hover:underline text-white font-bold">+1 (800) 555-AIDEN</a>
+              24/7 Hotline: <a href="tel:+256784467000" className="hover:underline text-white font-bold">0784467000 (MTN)</a> / <a href="tel:+256752023628" className="hover:underline text-white font-bold">0752023628 (Airtel)</a>
             </span>
             <span className="hidden md:inline-flex items-center gap-1 text-emerald-300/80">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
@@ -45,8 +45,9 @@ export const Header: React.FC<HeaderProps> = ({
                 onChange={(e) => setCurrency(e.target.value)}
                 className="bg-transparent border-none text-emerald-100 font-medium focus:ring-0 text-xs cursor-pointer"
               >
-                <option value="USD" className="text-gray-900">USD ($)</option>
-                <option value="EUR" className="text-gray-900">EUR (€)</option>
+                <option value="USD" className="text-gray-900">USD ($ Dollars)</option>
+                <option value="UGX" className="text-gray-900">UGX (USh Shillings)</option>
+                <option value="EUR" className="text-gray-900">EUR (€ Euros)</option>
                 <option value="GBP" className="text-gray-900">GBP (£)</option>
                 <option value="AED" className="text-gray-900">AED (د.إ)</option>
                 <option value="JPY" className="text-gray-900">JPY (¥)</option>
@@ -134,6 +135,18 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
 
           <button
+            onClick={() => setActiveTab('car-rental')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
+              activeTab === 'car-rental'
+                ? 'bg-[#0D3B2B] text-white shadow-sm'
+                : 'text-emerald-900 hover:bg-emerald-100/60'
+            }`}
+          >
+            <Car className="w-4 h-4 text-[#E88B23]" />
+            Uganda 4x4 Hire
+          </button>
+
+          <button
             onClick={() => setActiveTab('my-bookings')}
             className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
               activeTab === 'my-bookings'
@@ -172,6 +185,7 @@ export const Header: React.FC<HeaderProps> = ({
               <option value="planner">✨ AI Trip Planner</option>
               <option value="search">Flights & Hotels</option>
               <option value="packages">Curated Packages</option>
+              <option value="car-rental">🚗 Uganda 4x4 Car Hire</option>
               <option value="corporate">Corporate & Visas</option>
               <option value="my-bookings">My Bookings ({savedCount})</option>
             </select>

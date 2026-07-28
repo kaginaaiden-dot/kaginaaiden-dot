@@ -76,10 +76,25 @@ export interface AiItinerary {
   aidenExclusivePerks: string[];
 }
 
+export interface CarRental {
+  id: string;
+  name: string;
+  type: '4x4 Safari Spec' | 'SUV' | 'Van / Supercustom' | 'Compact 4x4' | 'Coaster Bus';
+  driveType: 'Self-Drive' | 'Chauffeur / Driver-Guide' | 'Both Options';
+  transmission: 'Automatic' | 'Manual';
+  capacity: string;
+  pricePerDayUSD: number;
+  image: string;
+  pickupLocations: string[];
+  features: string[];
+  popularFor: string;
+  campingGearAvailable: boolean;
+}
+
 export interface BookingRecord {
   id: string;
   bookingRef: string;
-  type: 'package' | 'flight' | 'hotel' | 'custom_ai_trip';
+  type: 'package' | 'flight' | 'hotel' | 'custom_ai_trip' | 'car';
   title: string;
   destination: string;
   dates: string;
@@ -93,4 +108,4 @@ export interface BookingRecord {
   detailsJson?: any;
 }
 
-export type NavigationTab = 'home' | 'planner' | 'search' | 'packages' | 'corporate' | 'my-bookings';
+export type NavigationTab = 'home' | 'planner' | 'search' | 'packages' | 'car-rental' | 'corporate' | 'my-bookings';

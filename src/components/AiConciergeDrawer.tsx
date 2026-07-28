@@ -89,12 +89,12 @@ export const AiConciergeDrawer: React.FC<AiConciergeDrawerProps> = ({
 
         {/* Quick Suggestion Chips */}
         <div className="p-3 bg-emerald-50/60 border-b border-emerald-100 flex flex-wrap gap-1.5 text-[11px]">
-          <span className="text-[10px] font-bold text-emerald-900 uppercase tracking-wider block w-full">Quick Questions:</span>
+          <span className="text-[10px] font-bold text-emerald-900 uppercase tracking-wider block w-full">East Africa Quick Questions:</span>
           {[
-            'Best season for Kyoto?',
-            'Visa rules for Schengen',
-            'Serengeti packing tips',
-            'Top dining in Positano',
+            'Uganda gorilla permit process?',
+            'East Africa Tourist Visa rules?',
+            'Best season for Serengeti Migration?',
+            '4x4 self-drive tips in East Africa?',
           ].map((prompt) => (
             <button
               key={prompt}

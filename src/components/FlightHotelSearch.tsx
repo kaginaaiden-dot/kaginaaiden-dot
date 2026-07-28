@@ -129,7 +129,7 @@ export const FlightHotelSearch: React.FC<FlightHotelSearchProps> = ({
                 <label className="font-bold text-gray-700 block mb-1">From (Origin)</label>
                 <input
                   type="text"
-                  placeholder="e.g. JFK, LAX, London"
+                  placeholder="e.g. EBB, NBO, KGL, London"
                   value={flightOrigin}
                   onChange={(e) => setFlightOrigin(e.target.value)}
                   className="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl font-semibold focus:outline-hidden focus:border-[#0D3B2B]"
@@ -140,7 +140,7 @@ export const FlightHotelSearch: React.FC<FlightHotelSearchProps> = ({
                 <label className="font-bold text-gray-700 block mb-1">To (Destination)</label>
                 <input
                   type="text"
-                  placeholder="e.g. LHR, DXB, Tokyo"
+                  placeholder="e.g. NBO, JRO, EBB, Dubai"
                   value={flightDestination}
                   onChange={(e) => setFlightDestination(e.target.value)}
                   className="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl font-semibold focus:outline-hidden focus:border-[#0D3B2B]"
@@ -252,10 +252,10 @@ export const FlightHotelSearch: React.FC<FlightHotelSearchProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div>
-                <label className="font-bold text-gray-700 block mb-1">Destination City</label>
+                <label className="font-bold text-gray-700 block mb-1">East Africa Destination / Lodge</label>
                 <input
                   type="text"
-                  placeholder="e.g. Kyoto, Positano, Serengeti, Dubai"
+                  placeholder="e.g. Bwindi, Serengeti, Masai Mara, Kampala, Zanzibar"
                   value={hotelCity}
                   onChange={(e) => setHotelCity(e.target.value)}
                   className="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl font-semibold focus:outline-hidden focus:border-[#0D3B2B]"

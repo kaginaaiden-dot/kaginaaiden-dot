@@ -16,10 +16,11 @@ export const Footer: React.FC = () => {
 
             <div className="space-y-1.5 text-xs text-emerald-200 pt-2">
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#E88B23]" /> 24/7 Hotline: +1 (800) 555-AIDEN
+                <Phone className="w-3.5 h-3.5 text-[#E88B23]" /> 
+                <span>MTN: <a href="tel:+256784467000" className="text-white hover:underline font-bold">+256 784 467 000</a> | Airtel: <a href="tel:+256752023628" className="text-white hover:underline font-bold">+256 752 023 628</a></span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#E88B23]" /> Contact: concierge@aidentravel.com
+                <Mail className="w-3.5 h-3.5 text-[#E88B23]" /> Contact: <a href="mailto:kaginaaiden@gmail.com" className="text-white hover:underline font-bold">kaginaaiden@gmail.com</a>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> IATA Verified License #962810
